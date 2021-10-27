@@ -1,0 +1,12 @@
+---
+- hosts: all
+  tasks:
+    - name: Add PHP 7 PPA Repo
+      apt_repository:
+        repo: ppa:ondrej/php
+    - name: Update apt-get repo and cache
+      apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+    - name: Install php with modules
+      apt:
+            name: ['php7.2', 'php7.2-common', 'php7.2-mbstring', 'php7.2-curl', 'php7.2-zip', 'php7.2-mysqli', 'php7.2-bcmath', 'php7.2-json']
+            state: latest
